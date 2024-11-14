@@ -1,5 +1,5 @@
 {
-  "name": "epamAutomationTest_task",
+  "name": "epamautomationtesttask",
   "description": "Testing Login page with different credentials",
   "version": "0.0.1",
   "private":"false",
