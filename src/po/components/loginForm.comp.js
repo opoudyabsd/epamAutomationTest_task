@@ -3,13 +3,13 @@ import LoginPage from '../page/login.page'
 class LoginForm extends LoginPage{
 
     get userName(){
-        return $('//input[@id="user-name"]')
+        return $('//*[@id="user-name"]')
     }
     get password(){
-        return $('//input[@id="password"]')
+        return $('//*[@id="password"]')
     }
     get loginButton(){
-        return $('//input[@id="login-button"]')
+        return $('//*[@id="login-button"]')
     }
     get errorText(){
         return $('//h3[@data-test="error"]')

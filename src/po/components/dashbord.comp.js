@@ -8,6 +8,7 @@ class DashbordComp extends MainPage {
     async validateTitle(){
         await expect(this.title).toHaveText('Swag Labs')
         await expect(this.title).toHaveTitle('Swag Labs')
+        await expect(this.title).toBeDisplayed()
     }
 }
 export default DashbordComp
