@@ -1,5 +1,8 @@
 {
   "name": "epamAutomationTest_task",
+  "description": "Testing Login page with different credentials",
+  "version": "0.0.1",
+  "private":"false",
   "type": "module",
   "devDependencies": {
     "@wdio/allure-reporter": "^9.2.2",
@@ -13,9 +16,10 @@
     "wdio-geckodriver-service": "^5.0.2"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "test": "wdio run ./src/configs/wdio.conf.js"
   },
   "dependencies": {
-    "wdio-chromedriver-service": "^8.1.1"
+    "wdio-chromedriver-service": "^8.1.1",
+    "winston": "^3.17.0"
   }
 }

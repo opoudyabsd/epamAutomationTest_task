@@ -1,48 +1,65 @@
 import LoginPage from './../po/page/login.page'
-import LoginForm from './../po/components/loginForm.container'
-import Dashbord from '../po/components/dashbord'
+import LoginForm from '../po/components/loginForm.comp'
+import DashbordComp from '../po/components/dashbord.comp'
+import loginData from "../testData/loginData"
+import logger from "../configs/winstonLogger"
 const loginPage = new LoginPage()
 const loginForm = new LoginForm()
-const dashbord = new Dashbord()
+const dashbord = new DashbordComp()
 
 describe("Check login page", ()=>{
     beforeEach(async()=>{
         await loginPage.open()
     })
 
+    loginData.forEach(({userName,password, error})=>{
+        it('Test Login form with empty credentials', async()=>{
+            logger.info('Starting test with empty credentials');
 
-    it('Test Login form with empty credentials', async()=>{
+            await loginForm.setValue(userName, password)
+            logger.info("Set username and password value")
+    
+            await loginForm.clearNameInput()
+            logger.info("Clear username form")
+            await loginForm.clearPasswordInput()
+            logger.info("Clear password form")
 
-        await loginForm.userName.setValue("Bohdan")
-        await loginForm.password.setValue(12345678)
+            await loginForm.loginButton.click()
+            logger.info('Click login button')
+    
+            await loginForm.checkErrorUserName()
+            logger.info('Check the error messages: "Username is required".')
+        })
+    
+        it('Test Login form with credentials by passing Username', async()=>{
+            logger.info('Starting test with empty credentials');
+            
+            await loginForm.setValue(userName, password)
+            logger.info("Set username and password value")
 
-        await loginForm.clearNameInput()
-        await loginForm.clearPasswordInput()
+            await loginForm.clearPasswordInput()
+            logger.info("Clear password form")
 
-        await loginForm.loginButton.click()
+            await loginForm.loginButton.click()
+            logger.info('Click login button')
 
-        await expect(loginForm.errorText).toHaveText('Epic sadface: Username is required')
+            await loginForm.checkErrorPassword()
+            logger.info('Check the error messages: "Password is required".')
+    
+        })
+    
+        it("Test Login form with credentials by passing Username & Password", async()=>{
+            logger.info('Starting test with empty credentials');
 
+            await loginForm.setValue(userName, password)
+            logger.info("Set username and password value")
+
+            await loginForm.loginButton.click()
+            logger.info('Click login button')
+
+            
+            error ? await loginForm.specialError() : await dashbord.validateTitle();
+            logger.info('Check for error if not validate the title “Swag Labs” in the dashboard.')
+        })
     })
-
-    it('Test Login form with credentials by passing Username', async()=>{
-        await loginForm.userName.setValue("Bohdan")
-        await loginForm.password.setValue(12345678)
-
-        await loginForm.clearPasswordInput()
-
-        await loginForm.loginButton.click()
-
-        await expect(loginForm.errorText).toHaveText("Epic sadface: Password is required")
-    })
-
-    it("Test Login form with credentials by passing Username & Password", async()=>{
-        await loginForm.userName.setValue("standard_user")
-        await loginForm.password.setValue('secret_sauce')
-        await loginForm.loginButton.click()
-        await expect(dashbord.title).toBeDisplayed()
-
-    })
-
-
 })

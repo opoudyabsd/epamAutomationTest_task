@@ -1,6 +1,6 @@
 class LoginPage{
     async open(){
-        await browser.url('/')
+        await browser.url(`https://www.saucedemo.com/`)
     }
 }
 
