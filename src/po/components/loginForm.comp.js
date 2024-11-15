@@ -15,7 +15,7 @@ class LoginForm extends LoginPage{
         return $('//h3[@data-test="error"]')
     }
 
-    async setValue(username, password){
+    async setInputValue(username, password){
         await this.userName.setValue(username)
         await this.password.setValue(password)
     }

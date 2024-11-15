@@ -16,7 +16,7 @@ describe("Check login page", ()=>{
         it('Test Login form with empty credentials', async()=>{
             logger.info('Starting test with empty credentials');
 
-            await loginForm.setValue(userName, password)
+            await loginForm.setInputValue(userName, password)
             logger.info("Set username and password value")
     
             await loginForm.clearNameInput()
@@ -34,7 +34,7 @@ describe("Check login page", ()=>{
         it('Test Login form with credentials by passing Username', async()=>{
             logger.info('Starting test with empty credentials');
             
-            await loginForm.setValue(userName, password)
+            await loginForm.setInputValue(userName, password)
             logger.info("Set username and password value")
 
             await loginForm.clearPasswordInput()
@@ -51,7 +51,7 @@ describe("Check login page", ()=>{
         it("Test Login form with credentials by passing Username & Password", async()=>{
             logger.info('Starting test with empty credentials');
 
-            await loginForm.setValue(userName, password)
+            await loginForm.setInputValue(userName, password)
             logger.info("Set username and password value")
 
             await loginForm.loginButton.click()
